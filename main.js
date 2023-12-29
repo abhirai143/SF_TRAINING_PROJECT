@@ -4,9 +4,7 @@ const apiKey = "b68b5fe706b9897e4567450673fa925b";
 const movieUrl = "https://api.themoviedb.org/3/movie/";
 const imageUrl = "https://image.tmdb.org/t/p/original";
 let movieIds;
-let details;
 let newArray;
-let trendMovies;
 let filteredMovies;
 let filteredMoviesbyGenres;
 
@@ -17,9 +15,6 @@ console.log(queryParamsMap.get("id"), queryParamsMap.get("posterPath"));
 import("./src/moviesPlay.js").then((res) => {
   console.log("data imported into data constant");
   data = res;
-  if (queryString) {
-    showHollyMovie(queryParamsMap.get("id"), queryParamsMap.get("posterPath"));
-  }
 
   run();
 });
@@ -62,6 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
       })),
     }));
 
+
     // Function to filter movies by search input
     function filterMoviesBySearch(searchTerm) {
       const lowerCaseSearchTerm = searchTerm.toLowerCase();
@@ -71,10 +67,10 @@ document.addEventListener("DOMContentLoaded", function () {
           movie.title.toLowerCase().includes(lowerCaseSearchTerm) ||
           movie.cast.some(
             (castMember) =>
-              castMember.character
+              castMember.character // by character name 
                 .toLowerCase()
                 .includes(lowerCaseSearchTerm) ||
-              castMember.name.toLowerCase().includes(lowerCaseSearchTerm)
+              castMember.name.toLowerCase().includes(lowerCaseSearchTerm)//by cast name 
           )
       );
     }
@@ -91,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
         filteredMovies = newArray;
       }
 
-      // If a search term is provided, filter by search term
+      // If a search term is provided, 
       if (searchTerm.trim() !== "") {
         filteredMovies = filterMoviesBySearch(searchTerm);
       }
@@ -99,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log(filteredMovies);
     }
 
-    // Attach event listeners to trigger filtering on input change
+    //event listeners to trigger filtering on input change
     document
       .getElementById("release-year")
       .addEventListener("change", updateFilteredMovies);
@@ -110,20 +106,21 @@ document.addEventListener("DOMContentLoaded", function () {
     // Initial call to display all movies
     updateFilteredMovies();
 
+
     // Function to filter movies by release year decade
     function filterMoviesByDecade(selectedDecade) {
       if (selectedDecade === "") {
-        // If "Any" is selected, return all movies
+        // "Any" is selected, return all movies
         return newArray;
       }
 
-      // Extract the start year of the selected decade
+      //the start year of the selected decade
       const startYear = parseInt(selectedDecade, 10);
 
-      // Calculate the end year of the selected decade
+      // the end year of the selected decade
       const endYear = startYear + 9;
 
-      // Use filter to get movies within the selected decade
+      // use filter to get movies within the selected decade
       const filteredMovies = newArray.filter((movie) => {
         const movieYear = new Date(movie.releaseDate).getFullYear();
         return movieYear >= startYear && movieYear <= endYear;
@@ -131,15 +128,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
       return filteredMovies;
     }
-
-    // Example usage:
     const selectedDecade = document.getElementById("release-year").value;
     const filteredMoviesbyYear = filterMoviesByDecade(selectedDecade);
+
 
     // Function to filter movies by Genres
     function filterMoviesByGenres(selectedGenres) {
       if (selectedGenres === "") {
-        // If "Any" is selected, return all movies
+        //"Any" is selected, return all movies
         return filteredMoviesbyYear;
       }
 
@@ -152,12 +148,9 @@ document.addEventListener("DOMContentLoaded", function () {
       return filteredMoviesByGenres;
     }
 
-    // Example usage:
     const selectedGenres = document.getElementById("genres").value;
     filteredMovies = filterMoviesByGenres(selectedGenres);
-    console.log(filteredMoviesbyGenres);
 
-    console.log(newArray);
   }
 
   // Function to get the value of the selected radio button
@@ -248,50 +241,3 @@ function updateContentWithMovies(moviesInfo) {
 
 updateContentWithMovies(moviesInfo);
 
-// ---------------go to cast imformation -----------
-function showHollyMovie(id, posterPath) {
-  const movieInfo = data.movie.find((movie) => {
-    return movie.tmdbId === id;
-  });
-  getCastHtml(movieInfo.cast).then((castHtml) => {
-    document.getElementById("castInfo").innerHTML = castHtml;
-  });
-
-  document.getElementById("title").innerHTML = movieInfo.title;
-  document.getElementById("overview").innerHTML = movieInfo.overview;
-  document.getElementById(
-    "moviePoster"
-  ).innerHTML = `<img src='${imageUrl}${posterPath}' />`;
-}
-
-// ----------populate cast ------------
-async function getCastHtml(cast) {
-  const castFetchArray = cast.map((cm) => {
-    return fetch(`${personUrl}${cm.id}?api_key=${apiKey}`).then((response) =>
-      response.json()
-    );
-  });
-  const castResponses = await Promise.all(castFetchArray);
-
-  let castHtml = '<div class="ui cards">';
-  castResponses.forEach((cr) => {
-    castHtml += `
-        <div class="card">
-          <div class="content">
-          <a href="./personhtml.html?id=${cr.id}&posterPath=${cr.profile_path}">
-            <img class="right floated mini ui image" src="${imageUrl}${cr.profile_path}">
-          </a>
-            <div class="header">
-              ${cr.name}
-            </div>
-            <div class="meta">
-              ${cr.birthday}
-            </div>
-          </div>
-        </div>
-      `;
-  });
-  castHtml += "</div>";
-
-  return castHtml;
-}
