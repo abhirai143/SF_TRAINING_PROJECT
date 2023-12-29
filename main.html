@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SF_TRAINING - Your Movie Hub</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f5;
+      }
+
+      nav {
+        background-color: #3498db;
+        color: #fff;
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      nav h1 {
+        margin: 0;
+        font-size: 24px;
+        color: #fff;
+      }
+
+      nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+      }
+
+      nav li {
+        margin-right: 20px;
+      }
+
+      nav a {
+        text-decoration: none;
+        color: #fff;
+        font-weight: bold;
+        font-size: 16px;
+      }
+
+      .ui.container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+      }
+
+      hr {
+        border: none;
+        border-top: 1px solid #ddd;
+        margin: 20px 0;
+      }
+
+      /* Filter Container Styles */
+      #filter-container {
+        background-color: #ecf0f1;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
+
+      input[type="text"],
+      select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #bdc3c7;
+        border-radius: 3px;
+        box-sizing: border-box;
+      }
+
+      input[type="radio"] {
+        margin-right: 5px;
+      }
+
+      button.ui.button.primary {
+        background-color: #3498db;
+        color: #fff;
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+
+      button.ui.button.primary:hover {
+        background-color: #2980b9;
+      }
+
+      /* Card Styles */
+      .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+      }
+
+      .card {
+        width: calc(33.33% - 20px); /* 20px for margin */
+        margin: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out;
+        box-sizing: border-box;
+      }
+
+      .card:hover {
+        transform: scale(1.05);
+      }
+
+      .image {
+        overflow: hidden;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+      }
+
+      .image img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .content {
+        padding: 16px;
+      }
+
+      .header {
+        font-size: 1.2em;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+
+      .meta a {
+        color: #555;
+        text-decoration: none;
+      }
+
+      .description {
+        color: #777;
+        line-height: 1.4;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Navigation Bar -->
+    <nav>
+      <h1>SF_TRAINING</h1>
+      <ul>
+        <li><a href="../../try.html">Home</a></li>
+        <li><a href="/components/popular/popular.html">Popular</a></li>
+        <li><a href="/components/top_rated/top_rated.html">Top Rated</a></li>
+        <li><a href="/components/trending/trending.html">Trending</a></li>
+        <li><a href="/components/up_coming/up_coming.html">Up Coming</a></li>
+      </ul>
+    </nav>
+
+    <!-- Main Content Section -->
+    <main class="ui container">
+      <!-- Filter Container -->
+      <section id="filter-container">
+        <label for="search-input">Search:</label>
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Enter movie title or cast name"
+        />
+
+        <label>Filter by Region:</label>
+        <label>
+          <input type="radio" name="movie-filter" value="data.movies" checked />
+          Hollywood
+        </label>
+        <label>
+          <input type="radio" name="movie-filter" value="data.hindiMovies" />
+          Bollywood
+        </label>
+        <label>
+          <input type="radio" name="movie-filter" value="All" />
+          All
+        </label>
+
+        <label for="release-year">Release Year Decade:</label>
+        <select name="release-year" id="release-year">
+          <option value="">Any</option>
+          <option value="1950">1950 - 1959</option>
+          <option value="1960">1960 - 1969</option>
+          <option value="1970">1970 - 1979</option>
+          <option value="1980">1980 - 1989</option>
+          <option value="1990">1990 - 1999</option>
+          <option value="2000">2000 - 2009</option>
+          <option value="2010">2010 - 2019</option>
+          <option value="2020">2020 - 2023</option>
+        </select>
+
+        <label for="genres">Genres:</label>
+        <select name="genres" id="genres">
+          <option value="">Any</option>
+          <option value="action">Action</option>
+          <option value="comedy">Comedy</option>
+          <option value="Drama">Drama</option>
+          <option value="Thriller">Thriller</option>
+          <option value="Adventure">Adventure</option>
+          <option value="Science Fiction">Science Fiction</option>
+          <option value="Animation">Animation</option>
+          <option value="Family">Family</option>
+          <option value="Mystery">Mystery</option>
+          <option value="Music">Music</option>
+          <option value="Horror">Horror</option>
+          <option value="Fantasy">Fantasy</option>
+          <option value="Romance">Romance</option>
+        </select>
+
+        <label for="sort-by-year">Sort By Year:</label>
+        <select name="sort-by-year" id="sort-by-year">
+          <option value="newest">Newest First</option>
+          <option value="oldest">Oldest First</option>
+        </select>
+      </section>
+
+      <!-- Action Button -->
+      <button class="btn btn-primary" onclick="getMovieInformation()">
+        Get Movie Info
+      </button>
+
+      <!-- Horizontal Line -->
+      <hr />
+
+      <div id="content" class="card-container"></div>
+    </main>
+
+    <script src="./main.js"></script>
+  </body>
+</html>

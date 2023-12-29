@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Learning is Fun</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon-img.png">
+    <link rel="stylesheet" href="/justPractice/styles.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css">
+    <style>
+      nav {
+      background-color: #3498db;
+      color: #fff;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav h1 {
+      margin: 0;
+      font-size: 24px;
+      color: #fff;
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    nav li {
+      margin-right: 20px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: bold;
+      font-size: 16px;
+    }
+    .container {
+    margin-top: 20px;
+}
+button {
+    margin-top: 20px !important;
+}
+body {
+    font-family: Arial, sans-serif;
+}
+img{
+    height: 200px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+}
+
+    </style>
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav>
+      <h1>SF_TRAINING</h1>
+      <ul>
+        <li><a href="../../try.html">Home</a></li>
+        <li><a href="/components/popular/popular.html">Popular</a></li>
+        <li><a href="/components/top_rated/top_rated.html">Top Rated</a></li>
+        <li><a href="/components/trending/trending.html">Trending</a></li>
+        <li><a href="/components/up_coming/up_coming.html">Up Coming</a></li>
+      </ul>
+    </nav>
+
+    <div class="ui container">
+      <h1 id="title"></h1>
+      <div id="overview"></div>
+      <hr/>
+      <div class="ui grid">
+        <div class="four wide column" id="moviePoster">
+        </div>
+        <div class="twelve wide column" id="castInfo">
+        </div>
+      </div>
+    </div>
+
+    <script src="./text.js"></script>
+  </body>
+</html>

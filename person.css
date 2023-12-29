@@ -1,0 +1,104 @@
+/* body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+  }
+  
+  .profile-container {
+    display: flex;
+    margin: 20px;
+  }
+  
+  .profile-image img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px;
+  }
+  
+  .profile-info {
+    flex: 1;
+  }
+  
+  .profile-info h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .profile-info p {
+    margin: 8px 0;
+    color: #555;
+  }
+  
+  .biography-container {
+    max-width: 800px;
+    margin: 20px auto;
+  }
+  
+  .biography-container h2 {
+    color: #333;
+  }
+  
+  .biography-container p {
+    color: #555;
+    line-height: 1.6;
+  }
+
+   */
+
+   body {
+    font-family: Arial, sans-serif;
+    background-color: #2c3e50;
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ecf0f1;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  }
+
+  .profile-image {
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+    margin-bottom: 20px;
+  }
+
+  .person-info {
+    margin-bottom: 20px;
+  }
+
+  .info-label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #34495e;
+  }
+
+  .info-content {
+    margin-bottom: 20px;
+    color: #7f8c8d;
+  }
+
+  .social-media-links {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+
+  .social-media-link {
+    color: #34495e;
+    text-decoration: none;
+    font-size: 24px;
+    transition: color 0.3s;
+  }
+
+  .social-media-link:hover {
+    color: #2c3e50;
+  }
