@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var radioButtons = document.getElementsByName("movie-filter");
   var releaseYearSelect = document.getElementById("release-year");
   var genresSelect = document.getElementById("genres");
+  var searchInput = document.getElementById("search-input");
 
   releaseYearSelect.addEventListener("change", handleFilterChange);
   genresSelect.addEventListener("change", handleFilterChange);
@@ -59,40 +60,39 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     // Function to filter movies by search input
-    function filterMoviesBySearch(searchTerm) {
-      const lowerCaseSearchTerm = searchTerm.toLowerCase();
-
-      return newArray.filter(
-        (movie) =>
-          movie.title.toLowerCase().includes(lowerCaseSearchTerm) ||
-          movie.cast.some(
-            (castMember) =>
-              castMember.character // by character name 
-                .toLowerCase()
-                .includes(lowerCaseSearchTerm) ||
-              castMember.name.toLowerCase().includes(lowerCaseSearchTerm)//by cast name 
-          )
-      );
-    }
-
     function updateFilteredMovies() {
-      const selectedDecade = document.getElementById("release-year").value;
-      const searchTerm = document.getElementById("search-input").value;
-
+      const selectedDecade = releaseYearSelect.value;
+      const searchTerm = searchInput.value.toLowerCase().trim();
+      const selectedGenres = genresSelect.value;
+    
+    
       if (selectedDecade !== "") {
-        // If a decade is selected, filter by decade
         filteredMovies = filterMoviesByDecade(selectedDecade);
       } else {
-        // Otherwise, use all movies
         filteredMovies = newArray;
       }
-
-      // If a search term is provided, 
-      if (searchTerm.trim() !== "") {
-        filteredMovies = filterMoviesBySearch(searchTerm);
+    
+      if (searchTerm !== "") {
+        filteredMovies = filterMoviesBySearch(searchTerm, filteredMovies);
       }
-
+    
+      if (selectedGenres !== "") {
+        filteredMovies = filterMoviesByGenres(selectedGenres, filteredMovies);
+      }
+    
       console.log(filteredMovies);
+    }
+    
+    function filterMoviesBySearch(searchTerm, movies) {
+      return movies.filter(
+        (movie) =>
+          movie.title.toLowerCase().includes(searchTerm) ||
+          movie.cast.some(
+            (castMember) =>
+              castMember.character.toLowerCase().includes(searchTerm) ||
+              castMember.name.toLowerCase().includes(searchTerm)
+          )
+      );
     }
 
     //event listeners to trigger filtering on input change
@@ -131,25 +131,20 @@ document.addEventListener("DOMContentLoaded", function () {
     const selectedDecade = document.getElementById("release-year").value;
     const filteredMoviesbyYear = filterMoviesByDecade(selectedDecade);
 
-
-    // Function to filter movies by Genres
-    function filterMoviesByGenres(selectedGenres) {
+    function filterMoviesByGenres(selectedGenres, movies) {
       if (selectedGenres === "") {
         //"Any" is selected, return all movies
         return filteredMoviesbyYear;
       }
-
-      // Use filter to get movies within the selected Genres
-      const filteredMoviesByGenres = filteredMoviesbyYear.filter((movie) =>
+      return movies.filter((movie) =>
         movie.genres
           .map((genre) => genre.toLowerCase())
           .includes(selectedGenres.toLowerCase())
       );
-      return filteredMoviesByGenres;
     }
 
     const selectedGenres = document.getElementById("genres").value;
-    filteredMovies = filterMoviesByGenres(selectedGenres);
+    filteredMovies = filterMoviesByGenres(selectedGenres, filteredMovies);
 
   }
 
