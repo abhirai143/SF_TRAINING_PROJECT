@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/x-icon" href="/images/favicon-img.png">
+    <link rel="icon" type="image/x-icon" href="/images/favicon-img.png" />
     <title>SF_TRAINING PROJECT</title>
+
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -16,7 +17,6 @@
         padding: 0;
         background-color: #f5f5f5;
       }
-
       nav {
         background-color: #3498db;
         color: #fff;
@@ -211,23 +211,29 @@
           <option value="2020">2020 - 2023</option>
         </select>
 
-        <label for="genres">Genres:</label>
-        <select name="genres" id="genres">
-          <option value="">Any</option>
-          <option value="action">Action</option>
-          <option value="comedy">Comedy</option>
-          <option value="Drama">Drama</option>
-          <option value="Thriller">Thriller</option>
-          <option value="Adventure">Adventure</option>
-          <option value="Science Fiction">Science Fiction</option>
-          <option value="Animation">Animation</option>
-          <option value="Family">Family</option>
-          <option value="Mystery">Mystery</option>
-          <option value="Music">Music</option>
-          <option value="Horror">Horror</option>
-          <option value="Fantasy">Fantasy</option>
-          <option value="Romance">Romance</option>
-        </select>
+        <div id="genres">
+          <label>Genres:</label>
+          <input type="checkbox" name="genre" value="Action" /> Action
+          <input type="checkbox" name="genre" value="Comedy" /> Comedy
+          <input type="checkbox" name="genre" value="Drama" /> Drama
+          <input type="checkbox" name="genre" value="Thriller" /> Thriller
+          <input type="checkbox" name="genre" value="Adventure" /> Adventure
+          <input type="checkbox" name="genre" value="Science Fiction" /> Science
+          Fiction
+          <input type="checkbox" name="genre" value="Animation" /> Animation
+          <input type="checkbox" name="genre" value="Family" /> Family
+          <input type="checkbox" name="genre" value="Mystery" /> Mystery
+          <input type="checkbox" name="genre" value="Music" /> Music
+          <input type="checkbox" name="genre" value="Horror" /> Horror
+          <input type="checkbox" name="genre" value="Fantasy" /> Fantasy
+          <input type="checkbox" name="genre" value="Romance" /> Romance
+        </div>
+
+        <div>
+          <label>Logic:</label>
+          <input type="radio" name="genre-logic" value="OR" checked /> OR
+          <input type="radio" name="genre-logic" value="AND" /> AND
+        </div>
 
         <label for="sort-by-year">Sort By Year:</label>
         <select name="sort-by-year" id="sort-by-year">
@@ -247,6 +253,6 @@
       <div id="content" class="card-container"></div>
     </main>
 
-    <script src="./main.js"></script>
+    <script src="./check.js"></script>
   </body>
 </html>
